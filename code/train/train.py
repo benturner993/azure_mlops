@@ -122,6 +122,7 @@ def main(args):
 
     # Register the model
     run.upload_file(model_file_path, model_file_path)
+    print('model upload complete...')
 #     model = Model.register(model_path=model_file_path,
 #                            model_name="model",
 #                            workspace=ws)
