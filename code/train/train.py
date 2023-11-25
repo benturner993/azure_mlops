@@ -125,7 +125,7 @@ def main(args):
 #     model = Model.register(model_path=model_file_path,
 #                            model_name="model",
 #                            workspace=ws)
-    run.register_model(model_file_path, model_name='model')
+    run.register_model(model_path=model_file_path, model_name='model')
     print('model register complete...')
 
     run.complete()
