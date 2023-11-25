@@ -115,6 +115,8 @@ def main(args):
     model_file_name = "model.pkl"
     joblib.dump(svm_model, os.path.join('outputs', model_file_name))
 
+    print('complete...')
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
