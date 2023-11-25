@@ -117,10 +117,11 @@ def main(args):
     model_file_path = os.path.join('outputs', model_file_name)
     joblib.dump(svm_model, model_file_path)
     
-    # Load your Azure Machine Learning workspace
-    ws = Workspace.from_config()
+#     # Load your Azure Machine Learning workspace
+#     ws = Workspace.from_config()
 
     # Register the model
+    run.upload_file(model_file_path, model_file_path)
     model = Model.register(model_path=model_file_path,
                            model_name="model",
                            workspace=ws)
