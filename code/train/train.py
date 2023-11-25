@@ -122,12 +122,11 @@ def main(args):
 
     # Register the model
     run.upload_file(model_file_path, model_file_path)
-    model = Model.register(model_path=model_file_path,
-                           model_name="model",
-                           workspace=ws)
-    
-#     run.register_model(model_path=os.path.join('outputs', model_file_name), model_name='model')
-#     print('model register complete...')
+#     model = Model.register(model_path=model_file_path,
+#                            model_name="model",
+#                            workspace=ws)
+    run.register_model(model_file_path, model_name='model')
+    print('model register complete...')
 
     run.complete()
     print('run complete...')
