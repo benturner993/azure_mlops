@@ -116,7 +116,7 @@ def main(args):
     joblib.dump(svm_model, os.path.join('outputs', model_file_name))
 
     print('complete...')
-
+    print('complete...')
 
 def parse_args():
     parser = argparse.ArgumentParser()
