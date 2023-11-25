@@ -11,8 +11,9 @@ from sklearn.metrics import confusion_matrix, precision_score, recall_score, f1_
 from sklearn.model_selection import train_test_split
 
 from azureml.core import Dataset, Run
-run = Run.get_context()
+from azureml.core import Workspace, Model
 
+run = Run.get_context()
 
 def log_confusion_matrix_image(cm, labels, normalize=False, log_name='confusion_matrix', title='Confusion matrix', cmap=plt.cm.Blues):
     '''
@@ -113,10 +114,19 @@ def main(args):
 
     # files saved in the "outputs" folder are automatically uploaded into run history
     model_file_name = "model.pkl"
-    joblib.dump(svm_model, os.path.join('outputs', model_file_name))
+    model_file_path = os.path.join('outputs', model_file_name)
+    joblib.dump(svm_model, model_file_path)
+    
+    # Load your Azure Machine Learning workspace
+    ws = Workspace.from_config()
 
-    run.register_model(model_path=os.path.join('outputs', model_file_name), model_name='model')
-    print('model register complete...')
+    # Register the model
+    model = Model.register(model_path=model_file_path,
+                           model_name="model",
+                           workspace=ws)
+    
+#     run.register_model(model_path=os.path.join('outputs', model_file_name), model_name='model')
+#     print('model register complete...')
 
     run.complete()
     print('run complete...')
