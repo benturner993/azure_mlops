@@ -115,8 +115,8 @@ def main(args):
     model_file_name = "model.pkl"
     joblib.dump(svm_model, os.path.join('outputs', model_file_name))
 
-#     run.register_model(model_path='outputs/model.pkl', model_name='model', workspace=ws)
-#     print('model register complete...')
+    run.register_model(model_path=os.path.join('outputs', model_file_name), model_name='model')
+    print('model register complete...')
 
     run.complete()
     print('run complete...')
